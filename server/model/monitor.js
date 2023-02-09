@@ -967,6 +967,17 @@ class Monitor extends BeanModel {
     }
 
     /**
+     * TODO
+     * @param {number} day 30 or 365 etc
+     * @param {number} monitorID
+     * @param {boolean} forceNoCache
+     * @returns {Promise<number>}
+     */
+    static async calcUptimeByDay(day, monitorID, forceNoCache = false) {
+        // TODO sum daily aggreated uptime +  today's uptime from 00:00 to now
+    }
+
+    /**
      * Uptime with calculation
      * Calculation based on:
      * https://www.uptrends.com/support/kb/reporting/calculation-of-uptime-and-downtime
@@ -974,6 +985,8 @@ class Monitor extends BeanModel {
      * @param {number} monitorID ID of monitor to calculate
      */
     static async calcUptime(duration, monitorID, forceNoCache = false) {
+
+        // TODO: aggregate daily uptime for previous date, skip if it is already aggregated
 
         if (!forceNoCache) {
             let cachedUptime = UptimeCacheList.getUptime(monitorID, duration);
